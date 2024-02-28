@@ -1,31 +1,56 @@
 package com.mygdx.meow;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.meow.screen.GameScreen;
+import com.mygdx.meow.screen.MenuScreen;
 
-public class MeowGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
+public class MeowGame extends Game {
+    public static final int SCREEN_WIDTH = 800;
+    public static final int SCREEN_HEIGHT = 480;
+    public static final String GAME = "Game";
+    public static final String MENU = "Menu";
+    private MenuScreen menuScreen;
+    private GameScreen gameScreen;
+    private SpriteBatch spriteBatch;
+    private BitmapFont font;
 
-	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+    @Override
+    public void create() {
+        menuScreen = new MenuScreen(this);
+        gameScreen = new GameScreen(this);
+
+        spriteBatch = new SpriteBatch();
+        font = new BitmapFont();
+        font.getData().setScale(2f);
+
+        this.setScreen(menuScreen);
+    }
+
+    public SpriteBatch getSpriteBatch() {
+        return spriteBatch;
+    }
+
+    public BitmapFont getFont() {
+        return font;
+    }
+
+    public void changeScreen(String screenName) {
+        if (screenName.equalsIgnoreCase(GAME)) {
+            setScreen(gameScreen);
+        } else if (screenName.equalsIgnoreCase(MENU)) {
+            setScreen(menuScreen);
+        }
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+
+        spriteBatch.dispose();
+        font.dispose();
+
+        menuScreen.dispose();
+    }
 }
