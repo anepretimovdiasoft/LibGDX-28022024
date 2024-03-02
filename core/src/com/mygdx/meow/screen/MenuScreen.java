@@ -47,12 +47,12 @@ public class MenuScreen implements Screen {
         batch.begin();
 
         batch.draw(background, 0, 0, MeowGame.SCREEN_WIDTH, MeowGame.SCREEN_HEIGHT);
-        meowGame.getFont().draw(
+        /*meowGame.getFont().draw(
                 batch,
                 "TAP TO START",
                 MeowGame.SCREEN_WIDTH / 2f - 100,
                 MeowGame.SCREEN_HEIGHT / 2f
-        );
+        );*/
 
         batch.end();
 
