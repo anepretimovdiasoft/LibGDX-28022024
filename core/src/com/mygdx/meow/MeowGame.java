@@ -52,5 +52,6 @@ public class MeowGame extends Game {
         font.dispose();
 
         menuScreen.dispose();
+        gameScreen.dispose();
     }
 }
