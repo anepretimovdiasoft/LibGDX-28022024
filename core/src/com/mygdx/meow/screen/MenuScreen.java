@@ -26,7 +26,7 @@ public class MenuScreen implements Screen {
     public void show() {
         batch = meowGame.getSpriteBatch();
 
-        camera = new OrthographicCameraWithLeftRightState();
+        camera = new OrthographicCamera();
         camera.setToOrtho(false, MeowGame.SCREEN_WIDTH, MeowGame.SCREEN_HEIGHT);
 
         background = new Texture(Gdx.files.internal("menu_back.png"));
