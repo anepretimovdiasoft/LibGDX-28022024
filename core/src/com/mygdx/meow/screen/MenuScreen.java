@@ -7,11 +7,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.meow.MeowGame;
-import com.mygdx.meow.camera.OrthographicCameraWithLeftRightState;
 import com.mygdx.meow.ui.MenuUserInterface;
 import com.mygdx.meow.util.AnimationUtil;
 
