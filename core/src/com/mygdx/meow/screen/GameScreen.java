@@ -122,6 +122,7 @@ public class GameScreen implements Screen {
     public void dispose() {
         background.dispose();
         gameUserInterface.dispose();
+        tmpTexture.dispose();
     }
 
     @Override
