@@ -2,8 +2,10 @@ package com.mygdx.meow.unit;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.mygdx.meow.MeowGame;
+import com.mygdx.meow.tower.CoreTower;
+import com.mygdx.meow.tower.resource.Resource;
+import com.mygdx.meow.user.User;
 import com.mygdx.meow.util.AnimationUtil;
 import com.mygdx.meow.util.MathUtil;
 
@@ -13,10 +15,10 @@ public class Worker extends Unit {
     private static final float WORKING_TIME = 5f;
 
     //TODO: экземпляр класса Resource
-    private Rectangle workingPlace;
+    private Resource workingPlace;
 
     //TODO: экземпляр класса CoreTower
-    private final Rectangle coreTower;
+    private final CoreTower coreTower;
 
     public enum StateWorker {
         FLY,
@@ -34,7 +36,7 @@ public class Worker extends Unit {
     //нужно ли развернуть спрайт по оси Х (если движение в обратном направлении)
     private boolean rightPosition;
 
-    public Worker(Rectangle coreTower) {
+    public Worker(CoreTower coreTower) {
 
         initStateMap();
         this.coreTower = coreTower;
@@ -49,7 +51,7 @@ public class Worker extends Unit {
         //Координаты спавна рабочих от 200 до 600 по Х
         x = MathUtil.getRandomNumber(
                 300,
-                600
+                (int) (coreTower.getX() - getWidth())
         );
         y = 480;
 
@@ -180,7 +182,7 @@ public class Worker extends Unit {
         return isAlive;
     }
 
-    public void setWorkingPlace(Rectangle workingPlace) {
+    public void setWorkingPlace(Resource workingPlace) {
         this.workingPlace = workingPlace;
     }
 
@@ -225,16 +227,26 @@ public class Worker extends Unit {
                     case WORK:
                         if (timeInState >= WORKING_TIME) {
                             setCurrentState(StateWorker.GO_FROM);
-                            setDestination(coreTower);
+                            setDestination(coreTower.getStorageBox());
                         }
                         break;
                     case GO_FROM:
 
                         setCurrentState(StateWorker.GO_TO);
 
-                        //TODO: логика добавления ресурса
+                        switch (workingPlace.getType()) {
+                            case GOLD:
+                                User.getInstance().incGold(10);
+                                break;
+                            case ORE:
+                                User.getInstance().incOre(20);
+                                break;
+                            case WOOD:
+                                User.getInstance().incWood(15);
+                                break;
+                        }
 
-                        setDestination(workingPlace);
+                        setDestination(workingPlace.getWorkBox());
                         break;
                 }
 

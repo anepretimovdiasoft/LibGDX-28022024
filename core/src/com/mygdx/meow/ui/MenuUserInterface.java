@@ -3,8 +3,6 @@ package com.mygdx.meow.ui;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -46,6 +44,7 @@ public class MenuUserInterface {
 
         stage.addActor(btnStart);
     }
+
     public void drawUI() {
         stage.act();
         stage.draw();

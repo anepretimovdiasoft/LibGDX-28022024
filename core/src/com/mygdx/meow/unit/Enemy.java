@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.meow.user.User;
 import com.mygdx.meow.util.AnimationUtil;
 
 import java.util.EnumMap;
@@ -164,7 +165,7 @@ public class Enemy extends Unit {
                     break;
                 case ATTACK:
                     if ((timeInState - timeLastAttack > 1 || timeLastAttack == -1) && isAlive) {
-                        //TODO: отнимать хп у здания
+                        User.getInstance().getDmg(10);
                         timeLastAttack = timeInState;
                     }
             }
