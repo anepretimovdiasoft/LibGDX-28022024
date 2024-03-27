@@ -170,6 +170,7 @@ public class GameScreen implements Screen {
         for (Resource resource : resourceList) {
             resource.dispose();
         }
+        coreTower.dispose();
     }
 
     @Override

@@ -4,42 +4,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.mygdx.meow.tower.Tower;
 
-public class Resource {
-    private final Rectangle hitBox;
-    private final Texture texture;
+public class Resource extends Tower {
     private final ResourceType type;
-    private final float x;
-    private final float y;
-    private final float width;
-    private final float height;
     private final Rectangle workBox;
 
     public Resource(float x, float y, Texture texture, ResourceType type, float width, float height) {
-        this.texture = texture;
-        this.x = x;
-        this.y = y;
+        super(x, y, width, height, texture, new Rectangle(x, y, width, height));
         this.type = type;
-        this.width = width;
-        this.height = height;
-        hitBox = new Rectangle(x, y, this.width, this.height);
         workBox = new Rectangle(x + width - 20, y, 15f, 15f);
-    }
-
-    public Rectangle getHitBox() {
-        return hitBox;
-    }
-
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public float getY() {
-        return y;
     }
 
     public boolean contains(float x, float y) {
@@ -63,7 +37,4 @@ public class Resource {
         //batch.draw(new Texture(Gdx.files.internal("tmp.png")), hitBox.x, hitBox.y, hitBox.width, hitBox.height);
     }
 
-    public void dispose() {
-        texture.dispose();
-    }
 }
